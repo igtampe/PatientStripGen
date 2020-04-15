@@ -3,11 +3,13 @@
 Public Class MainForm
 
     Public AllPatients As ArrayList
+    Public AllWindows As ArrayList
 
     Private Sub StartTheShow() Handles MyBase.Shown
 
-        'Create the arraylist
+        'Create the arraylists
         AllPatients = New ArrayList
+        AllWindows = New ArrayList
 
         'Load the file
 
@@ -83,15 +85,32 @@ Public Class MainForm
     End Sub
 
     Private Sub NewPatientToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewPatientToolStripMenuItem.Click
-
         Dim newPatientForm As PatientDetailsForm = New PatientDetailsForm With {.NewMode = True}
-        newPatientForm.ShowDialog()
-        If newPatientForm.Commit Then
-            AllPatients.Add(newPatientForm.MyPatient)
-            populateListViews()
+        newPatientForm.Show()
+    End Sub
+
+    Public Function AddPatient(NuPatient As Patient)
+        'Check if we contain it
+        If AllPatients.Contains(New Patient(NuPatient.getRecord)) Then
+            MsgBox("Cannot add this patient! A patient with the same record number already exists!", MsgBoxStyle.Critical)
+            Return False
         End If
 
-    End Sub
+        AllPatients.Add(NuPatient)
+        populateListViews()
+        Return True
+    End Function
+
+    Public Function UpdatePatient(NuPatient As Patient)
+        Try
+            AllPatients.Item(GetPatientIndex(NuPatient.getRecord)) = NuPatient
+            populateListViews()
+            Return True
+        Catch
+            MsgBox("Could not update " & NuPatient.getName.ToString, vbCritical)
+            Return False
+        End Try
+    End Function
 
     Private Sub populateListViews()
 
@@ -111,9 +130,17 @@ Public Class MainForm
             PAsListview.SubItems.Add(TryCast(P.getVisits.Item(0), PatientVisit).getDate.ToString("d"))
             PAsListview.SubItems.Add(TryCast(P.getVisits.Item(P.getVisits.Count - 1), PatientVisit).getDate.ToString("d"))
 
+            'Find the floor that this patient is in
+            Dim Floornumber As Integer = P.GetRoomNumber.ToString().Substring(0, 1)
+
             If P.isComplete Then
                 CompletedPatientListview.Items.Add(PAsListview)
             Else
+                Try
+                    PAsListview.Group = ActivePatientsListview.Groups.Item(Floornumber - 1)
+                Catch ex As Exception
+                    'Nothing really, just put it in the default group.
+                End Try
                 ActivePatientsListview.Items.Add(PAsListview)
             End If
 
@@ -128,7 +155,21 @@ Public Class MainForm
     End Sub
 
     Private Sub DeleteSelectedPatientsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DeleteSelectedPatientsToolStripMenuItem.Click
-        'Also no
+        Dim Result As MsgBoxResult = MsgBox("This will delete all checked items in the Completed section. Are you sure you want to do this?", MsgBoxStyle.Question + MsgBoxStyle.YesNo)
+        If Result = MsgBoxResult.Yes Then
+            'delete them
+
+            For Each Cosita As ListViewItem In CompletedPatientListview.CheckedItems
+                'remove it from allpatients
+                AllPatients.Remove(New Patient(Cosita.SubItems.Item(1).Text))
+            Next
+
+            'repopulate the listview
+            populateListViews()
+
+        End If
+
+
     End Sub
 
     Private Sub ExportCompletePatientsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportCompletePatientsToolStripMenuItem.Click
@@ -147,18 +188,49 @@ Public Class MainForm
             .MyPatient = TryCast(AllPatients.Item(GetPatientIndex(ActivePatientsListview.SelectedItems.Item(0).SubItems.Item(1).Text)), Patient)
         }
 
-        ExistingPatientDetailsForm.ShowDialog()
-
-        If ExistingPatientDetailsForm.Commit Then
-            AllPatients.Item(GetPatientIndex(ExistingPatientDetailsForm.MyPatient.getRecord)) = ExistingPatientDetailsForm.MyPatient
-            populateListViews()
+        Dim PotentialOtherWindow As PatientDetailsForm = RegisterWindow(ExistingPatientDetailsForm)
+        If Not IsNothing(PotentialOtherWindow) Then
+            PotentialOtherWindow.Activate()
+        Else
+            ExistingPatientDetailsForm.Show()
         End If
 
+
+    End Sub
+
+    Private Sub CompletePatientsListview_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CompletedPatientListview.DoubleClick
+        Dim ExistingPatientDetailsForm As PatientDetailsForm = New PatientDetailsForm With {
+            .MyPatient = TryCast(AllPatients.Item(GetPatientIndex(CompletedPatientListview.SelectedItems.Item(0).SubItems.Item(1).Text)), Patient),
+            .CompleteMode = True
+        }
+
+        Dim PotentialOtherWindow As PatientDetailsForm = RegisterWindow(ExistingPatientDetailsForm)
+        If Not IsNothing(PotentialOtherWindow) Then PotentialOtherWindow.TopMost = True Else ExistingPatientDetailsForm.Show()
 
     End Sub
 
     Private Function GetPatientIndex(Record As Integer)
         Return AllPatients.IndexOf(New Patient(Record))
     End Function
+
+    Private Function RegisterWindow(Window As PatientDetailsForm) As PatientDetailsForm
+        For Each W As PatientDetailsForm In AllWindows
+            If Window.MyPatient.Equals(W.MyPatient) Then Return W
+        Next
+
+        AllWindows.Add(Window)
+
+        Return Nothing
+
+    End Function
+
+    Public Sub DeRegisterWindow(NuPatient As Patient)
+        For Each W As PatientDetailsForm In AllWindows
+            If NuPatient.Equals(W.MyPatient) Then
+                AllWindows.Remove(W)
+                Return
+            End If
+        Next
+    End Sub
 
 End Class

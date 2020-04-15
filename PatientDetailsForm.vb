@@ -5,11 +5,11 @@
     ''' <summary> Specifies if the form should be in NEW mode</summary>
     Public NewMode As Boolean = False
 
-    ''' <summary> Specifies whether or not to commit changes made</summary>
-    Public Commit As Boolean = False
-
     ''' <summary> Specifies whether or not to mark the current patient as complete </summary>
     Public MarkComplete As Boolean = False
+
+    ''' <summary> Specifies if the form should be in NEW mode</summary>
+    Public CompleteMode As Boolean = False
 
 
     Private Sub TimeToStartTheShow() Handles MyBase.Load
@@ -33,6 +33,16 @@
 
             'Assume we have a patient specified. Let's go ahead and populate the form.
             PopulateForm()
+
+            If CompleteMode Then
+                RoomNumberTXB.ReadOnly = True
+                InsuranceTXB.ReadOnly = True
+                DiagnosisTXB.ReadOnly = True
+                FileToolStripMenuItem.Enabled = False
+
+                CANCELBTN.Enabled = False
+
+            End If
 
         End If
     End Sub
@@ -71,10 +81,6 @@
     End Sub
 
     Private Sub CANCELBTN_Click(sender As Object, e As EventArgs) Handles CANCELBTN.Click
-
-        'just in case
-        Commit = False
-
         Close()
     End Sub
 
@@ -99,6 +105,8 @@
 
     Private Sub NowForTheClosingAct() Handles OKBTN.Click
 
+        If CompleteMode Then Close()
+
         Dim RecordNum As Integer
         Dim RoomNum As Integer
 
@@ -108,6 +116,7 @@
         Catch ex As Exception
             Debug.WriteLine(ex.Message & vbNewLine & vbNewLine & ex.StackTrace)
             MsgBox("Unable to convert Record Number or Room Number to integer. Perhaps there are non-number characters there?", MsgBoxStyle.OkOnly + MsgBoxStyle.Critical)
+            Return
         End Try
 
         If NewMode Then
@@ -123,8 +132,8 @@
             End If
 
             MyPatient = New Patient(New Name(FirstNameTXB.Text, PLastNameTXB.Text, MLastNameTXB.Text), RecordNum, InsuranceTXB.Text, DiagnosisTXB.Text, RoomNum, NewVisitForm.ReturnVisit)
-            Commit = True
-            Close()
+
+            If MainForm.AddPatient(MyPatient) Then Close()
 
         Else
 
@@ -133,15 +142,18 @@
             MyPatient.SetDiagnosis(DiagnosisTXB.Text)
             MyPatient.SetInsurance(InsuranceTXB.Text)
 
-            Commit = True
             If MarkComplete Then MyPatient.MarkComplete()
-            Close()
 
+            If MainForm.UpdatePatient(MyPatient) Then Close()
         End If
 
     End Sub
 
     Private Sub AboutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AboutToolStripMenuItem.Click
         AboutForm.ShowDialog()
+    End Sub
+
+    Private Sub theEndCredits() Handles Me.Closing
+        MainForm.DeRegisterWindow(MyPatient)
     End Sub
 End Class

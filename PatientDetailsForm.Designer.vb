@@ -207,7 +207,7 @@ Partial Class PatientDetailsForm
         Me.TableLayoutPanel2.ColumnCount = 3
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.54321!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.45679!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 354.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 355.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label5, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label6, 1, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label7, 2, 0)
@@ -246,7 +246,7 @@ Partial Class PatientDetailsForm
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(300, 0)
+        Me.Label7.Location = New System.Drawing.Point(299, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(54, 13)
         Me.Label7.TabIndex = 9
@@ -265,15 +265,15 @@ Partial Class PatientDetailsForm
         Me.RoomNumberTXB.Dock = System.Windows.Forms.DockStyle.Fill
         Me.RoomNumberTXB.Location = New System.Drawing.Point(156, 20)
         Me.RoomNumberTXB.Name = "RoomNumberTXB"
-        Me.RoomNumberTXB.Size = New System.Drawing.Size(138, 20)
+        Me.RoomNumberTXB.Size = New System.Drawing.Size(137, 20)
         Me.RoomNumberTXB.TabIndex = 11
         '
         'InsuranceTXB
         '
         Me.InsuranceTXB.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.InsuranceTXB.Location = New System.Drawing.Point(300, 20)
+        Me.InsuranceTXB.Location = New System.Drawing.Point(299, 20)
         Me.InsuranceTXB.Name = "InsuranceTXB"
-        Me.InsuranceTXB.Size = New System.Drawing.Size(349, 20)
+        Me.InsuranceTXB.Size = New System.Drawing.Size(350, 20)
         Me.InsuranceTXB.TabIndex = 12
         '
         'TableLayoutPanel3
@@ -415,7 +415,6 @@ Partial Class PatientDetailsForm
         Me.ClientSize = New System.Drawing.Size(658, 631)
         Me.Controls.Add(Me.PatientLayout)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "PatientDetailsForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
