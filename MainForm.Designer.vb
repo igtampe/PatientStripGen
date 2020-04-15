@@ -31,11 +31,12 @@ Partial Class MainForm
         Dim ListViewGroup7 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("7th Floor", System.Windows.Forms.HorizontalAlignment.Left)
         Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Juan Del Pueblo", "11020", "602", "5/15/2020", "5/20/2020"}, -1)
         Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Juan Del Pueblo", "11020", "602", "5/15/2020", "5/20/2020"}, -1)
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.ActiveTableLayout = New System.Windows.Forms.TableLayoutPanel()
         Me.ActivePatientsListview = New System.Windows.Forms.ListView()
-        Me.Name = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.LName = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Record = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.Room = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.DateAdmin = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
@@ -100,7 +101,7 @@ Partial Class MainForm
         '
         'ActivePatientsListview
         '
-        Me.ActivePatientsListview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.Name, Me.Record, Me.Room, Me.DateAdmin, Me.DateLastVisit})
+        Me.ActivePatientsListview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.LName, Me.Record, Me.Room, Me.DateAdmin, Me.DateLastVisit})
         Me.ActivePatientsListview.Dock = System.Windows.Forms.DockStyle.Fill
         Me.ActivePatientsListview.FullRowSelect = True
         ListViewGroup1.Header = "1st Floor"
@@ -129,10 +130,10 @@ Partial Class MainForm
         Me.ActivePatientsListview.UseCompatibleStateImageBehavior = False
         Me.ActivePatientsListview.View = System.Windows.Forms.View.Details
         '
-        'Name
+        'LName
         '
-        Me.Name.Text = "Name"
-        Me.Name.Width = 180
+        Me.LName.Text = "Name"
+        Me.LName.Width = 180
         '
         'Record
         '
@@ -275,8 +276,9 @@ Partial Class MainForm
         Me.ClientSize = New System.Drawing.Size(579, 648)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
-        'Me.Name = "MainForm"
+        Me.Name = "MainForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "PatientStrip Generator"
         Me.TabControl1.ResumeLayout(False)
@@ -308,7 +310,7 @@ Partial Class MainForm
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ActivePatientsListview As ListView
-    Friend WithEvents Name As ColumnHeader
+    Friend WithEvents LName As ColumnHeader
     Friend WithEvents Record As ColumnHeader
     Friend WithEvents Room As ColumnHeader
     Friend WithEvents DateAdmin As ColumnHeader
