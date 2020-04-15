@@ -133,6 +133,9 @@
     <EmbeddedResource Include="PatientDetailsForm.resx">
       <DependentUpon>PatientDetailsForm.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PatientVisitForm.resx">
+      <DependentUpon>PatientVisitForm.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="My Project\Application.myapp">

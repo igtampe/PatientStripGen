@@ -22,25 +22,31 @@ Partial Class MainForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ListViewGroup15 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("1st Floor", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup16 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("2nd Floor", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup17 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("3rd Floor", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup18 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("4th Floor", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup19 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("5th Floor", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup20 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("6th Floor", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup21 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("7th Floor", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewItem3 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Juan Del Pueblo", "11020", "602", "5/15/2020", "5/20/2020"}, -1)
-        Dim ListViewGroup22 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("1st Floor", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup23 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("2nd Floor", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup24 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("3rd Floor", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup25 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("4th Floor", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup26 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("5th Floor", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup27 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("6th Floor", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewGroup28 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("7th Floor", System.Windows.Forms.HorizontalAlignment.Left)
-        Dim ListViewItem4 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Juan Del Pueblo", "11020", "602", "5/15/2020", "5/20/2020"}, -1)
+        Dim ListViewGroup1 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("1st Floor", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup2 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("2nd Floor", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup3 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("3rd Floor", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup4 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("4th Floor", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup5 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("5th Floor", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup6 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("6th Floor", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup7 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("7th Floor", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Juan Del Pueblo", "11020", "602", "5/15/2020", "5/20/2020"}, -1)
+        Dim ListViewGroup8 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("1st Floor", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup9 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("2nd Floor", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup10 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("3rd Floor", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup11 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("4th Floor", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup12 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("5th Floor", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup13 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("6th Floor", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewGroup14 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("7th Floor", System.Windows.Forms.HorizontalAlignment.Left)
+        Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Juan Del Pueblo", "11020", "602", "5/15/2020", "5/20/2020"}, -1)
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.ActiveTableLayout = New System.Windows.Forms.TableLayoutPanel()
+        Me.ActivePatientsListview = New System.Windows.Forms.ListView()
+        Me.Name = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.Record = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.Room = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.DateAdmin = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
+        Me.DateLastVisit = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.CompletedPatientListview = New System.Windows.Forms.ListView()
@@ -52,16 +58,10 @@ Partial Class MainForm
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewPatientToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ModifyPatientToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.MarkPatientCompleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportCompletePatientsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DeleteSelectedPatientsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ActivePatientsListview = New System.Windows.Forms.ListView()
-        Me.Name = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.Record = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.Room = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.DateAdmin = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.DateLastVisit = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.ActiveTableLayout.SuspendLayout()
@@ -78,7 +78,7 @@ Partial Class MainForm
         Me.TabControl1.Location = New System.Drawing.Point(0, 24)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(551, 667)
+        Me.TabControl1.Size = New System.Drawing.Size(579, 624)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
@@ -87,7 +87,7 @@ Partial Class MainForm
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(543, 641)
+        Me.TabPage1.Size = New System.Drawing.Size(571, 598)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Active Patients"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -102,8 +102,64 @@ Partial Class MainForm
         Me.ActiveTableLayout.Name = "ActiveTableLayout"
         Me.ActiveTableLayout.RowCount = 1
         Me.ActiveTableLayout.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85.53259!))
-        Me.ActiveTableLayout.Size = New System.Drawing.Size(537, 635)
+        Me.ActiveTableLayout.Size = New System.Drawing.Size(565, 592)
         Me.ActiveTableLayout.TabIndex = 2
+        '
+        'ActivePatientsListview
+        '
+        Me.ActivePatientsListview.CheckBoxes = True
+        Me.ActivePatientsListview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.Name, Me.Record, Me.Room, Me.DateAdmin, Me.DateLastVisit})
+        Me.ActivePatientsListview.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ActivePatientsListview.FullRowSelect = True
+        ListViewGroup1.Header = "1st Floor"
+        ListViewGroup1.Name = "F1"
+        ListViewGroup2.Header = "2nd Floor"
+        ListViewGroup2.Name = "F2"
+        ListViewGroup3.Header = "3rd Floor"
+        ListViewGroup3.Name = "F3"
+        ListViewGroup4.Header = "4th Floor"
+        ListViewGroup4.Name = "F4"
+        ListViewGroup5.Header = "5th Floor"
+        ListViewGroup5.Name = "F5"
+        ListViewGroup6.Header = "6th Floor"
+        ListViewGroup6.Name = "F6"
+        ListViewGroup7.Header = "7th Floor"
+        ListViewGroup7.Name = "F7"
+        Me.ActivePatientsListview.Groups.AddRange(New System.Windows.Forms.ListViewGroup() {ListViewGroup1, ListViewGroup2, ListViewGroup3, ListViewGroup4, ListViewGroup5, ListViewGroup6, ListViewGroup7})
+        Me.ActivePatientsListview.HideSelection = False
+        ListViewItem1.Group = ListViewGroup6
+        ListViewItem1.StateImageIndex = 0
+        Me.ActivePatientsListview.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem1})
+        Me.ActivePatientsListview.Location = New System.Drawing.Point(3, 3)
+        Me.ActivePatientsListview.Name = "ActivePatientsListview"
+        Me.ActivePatientsListview.Size = New System.Drawing.Size(559, 586)
+        Me.ActivePatientsListview.TabIndex = 2
+        Me.ActivePatientsListview.UseCompatibleStateImageBehavior = False
+        Me.ActivePatientsListview.View = System.Windows.Forms.View.Details
+        '
+        'Name
+        '
+        Me.Name.Text = "Name"
+        Me.Name.Width = 180
+        '
+        'Record
+        '
+        Me.Record.Text = "Record #"
+        Me.Record.Width = 58
+        '
+        'Room
+        '
+        Me.Room.Text = "Room #"
+        '
+        'DateAdmin
+        '
+        Me.DateAdmin.Text = "Date of Admission"
+        Me.DateAdmin.Width = 103
+        '
+        'DateLastVisit
+        '
+        Me.DateLastVisit.Text = "Last Visit"
+        Me.DateLastVisit.Width = 67
         '
         'TabPage2
         '
@@ -111,7 +167,7 @@ Partial Class MainForm
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(543, 641)
+        Me.TabPage2.Size = New System.Drawing.Size(571, 598)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Completed Patients"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -126,34 +182,37 @@ Partial Class MainForm
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 96.37795!))
-        Me.TableLayoutPanel2.Size = New System.Drawing.Size(537, 635)
+        Me.TableLayoutPanel2.Size = New System.Drawing.Size(565, 592)
         Me.TableLayoutPanel2.TabIndex = 2
         '
         'CompletedPatientListview
         '
+        Me.CompletedPatientListview.CheckBoxes = True
         Me.CompletedPatientListview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.ColumnHeader1, Me.ColumnHeader2, Me.ColumnHeader3, Me.ColumnHeader4, Me.ColumnHeader5})
         Me.CompletedPatientListview.Dock = System.Windows.Forms.DockStyle.Fill
-        ListViewGroup15.Header = "1st Floor"
-        ListViewGroup15.Name = "F1"
-        ListViewGroup16.Header = "2nd Floor"
-        ListViewGroup16.Name = "F2"
-        ListViewGroup17.Header = "3rd Floor"
-        ListViewGroup17.Name = "F3"
-        ListViewGroup18.Header = "4th Floor"
-        ListViewGroup18.Name = "F4"
-        ListViewGroup19.Header = "5th Floor"
-        ListViewGroup19.Name = "F5"
-        ListViewGroup20.Header = "6th Floor"
-        ListViewGroup20.Name = "F6"
-        ListViewGroup21.Header = "7th Floor"
-        ListViewGroup21.Name = "F7"
-        Me.CompletedPatientListview.Groups.AddRange(New System.Windows.Forms.ListViewGroup() {ListViewGroup15, ListViewGroup16, ListViewGroup17, ListViewGroup18, ListViewGroup19, ListViewGroup20, ListViewGroup21})
+        Me.CompletedPatientListview.FullRowSelect = True
+        ListViewGroup8.Header = "1st Floor"
+        ListViewGroup8.Name = "F1"
+        ListViewGroup9.Header = "2nd Floor"
+        ListViewGroup9.Name = "F2"
+        ListViewGroup10.Header = "3rd Floor"
+        ListViewGroup10.Name = "F3"
+        ListViewGroup11.Header = "4th Floor"
+        ListViewGroup11.Name = "F4"
+        ListViewGroup12.Header = "5th Floor"
+        ListViewGroup12.Name = "F5"
+        ListViewGroup13.Header = "6th Floor"
+        ListViewGroup13.Name = "F6"
+        ListViewGroup14.Header = "7th Floor"
+        ListViewGroup14.Name = "F7"
+        Me.CompletedPatientListview.Groups.AddRange(New System.Windows.Forms.ListViewGroup() {ListViewGroup8, ListViewGroup9, ListViewGroup10, ListViewGroup11, ListViewGroup12, ListViewGroup13, ListViewGroup14})
         Me.CompletedPatientListview.HideSelection = False
-        ListViewItem3.Group = ListViewGroup20
-        Me.CompletedPatientListview.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem3})
+        ListViewItem2.Group = ListViewGroup13
+        ListViewItem2.StateImageIndex = 0
+        Me.CompletedPatientListview.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem2})
         Me.CompletedPatientListview.Location = New System.Drawing.Point(3, 3)
         Me.CompletedPatientListview.Name = "CompletedPatientListview"
-        Me.CompletedPatientListview.Size = New System.Drawing.Size(531, 629)
+        Me.CompletedPatientListview.Size = New System.Drawing.Size(559, 586)
         Me.CompletedPatientListview.TabIndex = 1
         Me.CompletedPatientListview.UseCompatibleStateImageBehavior = False
         Me.CompletedPatientListview.View = System.Windows.Forms.View.Details
@@ -187,13 +246,13 @@ Partial Class MainForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(551, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(579, 24)
         Me.MenuStrip1.TabIndex = 1
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewPatientToolStripMenuItem, Me.ModifyPatientToolStripMenuItem, Me.MarkPatientCompleteToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewPatientToolStripMenuItem, Me.ExportCompletePatientsToolStripMenuItem, Me.DeleteSelectedPatientsToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
@@ -202,21 +261,20 @@ Partial Class MainForm
         '
         Me.NewPatientToolStripMenuItem.Name = "NewPatientToolStripMenuItem"
         Me.NewPatientToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NewPatientToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.NewPatientToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
         Me.NewPatientToolStripMenuItem.Text = "New Patient"
         '
-        'ModifyPatientToolStripMenuItem
+        'ExportCompletePatientsToolStripMenuItem
         '
-        Me.ModifyPatientToolStripMenuItem.Name = "ModifyPatientToolStripMenuItem"
-        Me.ModifyPatientToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
-        Me.ModifyPatientToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
-        Me.ModifyPatientToolStripMenuItem.Text = "Modify Patient"
+        Me.ExportCompletePatientsToolStripMenuItem.Name = "ExportCompletePatientsToolStripMenuItem"
+        Me.ExportCompletePatientsToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
+        Me.ExportCompletePatientsToolStripMenuItem.Text = "Export Complete Patients"
         '
-        'MarkPatientCompleteToolStripMenuItem
+        'DeleteSelectedPatientsToolStripMenuItem
         '
-        Me.MarkPatientCompleteToolStripMenuItem.Name = "MarkPatientCompleteToolStripMenuItem"
-        Me.MarkPatientCompleteToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
-        Me.MarkPatientCompleteToolStripMenuItem.Text = "Mark Patient Complete"
+        Me.DeleteSelectedPatientsToolStripMenuItem.Name = "DeleteSelectedPatientsToolStripMenuItem"
+        Me.DeleteSelectedPatientsToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
+        Me.DeleteSelectedPatientsToolStripMenuItem.Text = "Delete Selected Patients"
         '
         'HelpToolStripMenuItem
         '
@@ -228,71 +286,19 @@ Partial Class MainForm
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
         Me.AboutToolStripMenuItem.Text = "About"
-        '
-        'ActivePatientsListview
-        '
-        Me.ActivePatientsListview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.Name, Me.Record, Me.Room, Me.DateAdmin, Me.DateLastVisit})
-        Me.ActivePatientsListview.Dock = System.Windows.Forms.DockStyle.Fill
-        ListViewGroup22.Header = "1st Floor"
-        ListViewGroup22.Name = "F1"
-        ListViewGroup23.Header = "2nd Floor"
-        ListViewGroup23.Name = "F2"
-        ListViewGroup24.Header = "3rd Floor"
-        ListViewGroup24.Name = "F3"
-        ListViewGroup25.Header = "4th Floor"
-        ListViewGroup25.Name = "F4"
-        ListViewGroup26.Header = "5th Floor"
-        ListViewGroup26.Name = "F5"
-        ListViewGroup27.Header = "6th Floor"
-        ListViewGroup27.Name = "F6"
-        ListViewGroup28.Header = "7th Floor"
-        ListViewGroup28.Name = "F7"
-        Me.ActivePatientsListview.Groups.AddRange(New System.Windows.Forms.ListViewGroup() {ListViewGroup22, ListViewGroup23, ListViewGroup24, ListViewGroup25, ListViewGroup26, ListViewGroup27, ListViewGroup28})
-        Me.ActivePatientsListview.HideSelection = False
-        ListViewItem4.Group = ListViewGroup27
-        Me.ActivePatientsListview.Items.AddRange(New System.Windows.Forms.ListViewItem() {ListViewItem4})
-        Me.ActivePatientsListview.Location = New System.Drawing.Point(3, 3)
-        Me.ActivePatientsListview.Name = "ActivePatientsListview"
-        Me.ActivePatientsListview.Size = New System.Drawing.Size(531, 629)
-        Me.ActivePatientsListview.TabIndex = 2
-        Me.ActivePatientsListview.UseCompatibleStateImageBehavior = False
-        Me.ActivePatientsListview.View = System.Windows.Forms.View.Details
-        '
-        'Name
-        '
-        Me.Name.Text = "Name"
-        Me.Name.Width = 180
-        '
-        'Record
-        '
-        Me.Record.Text = "Record #"
-        Me.Record.Width = 58
-        '
-        'Room
-        '
-        Me.Room.Text = "Room #"
-        '
-        'DateAdmin
-        '
-        Me.DateAdmin.Text = "Date of Admission"
-        Me.DateAdmin.Width = 103
-        '
-        'DateLastVisit
-        '
-        Me.DateLastVisit.Text = "Last Visit"
-        Me.DateLastVisit.Width = 67
         '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(551, 691)
+        Me.ClientSize = New System.Drawing.Size(579, 648)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.Name = "MainForm"
+        ' Me.Name = "MainForm"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "PatientStrip Generator"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
@@ -320,8 +326,6 @@ Partial Class MainForm
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents NewPatientToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents ModifyPatientToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents MarkPatientCompleteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AboutToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ActivePatientsListview As ListView
@@ -330,4 +334,6 @@ Partial Class MainForm
     Friend WithEvents Room As ColumnHeader
     Friend WithEvents DateAdmin As ColumnHeader
     Friend WithEvents DateLastVisit As ColumnHeader
+    Friend WithEvents ExportCompletePatientsToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents DeleteSelectedPatientsToolStripMenuItem As ToolStripMenuItem
 End Class

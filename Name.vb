@@ -1,9 +1,9 @@
 ﻿''' <summary>Holds names so that their components are re-organizable </summary>
 Public Class Name
 
-    Protected Firstname As String
-    Protected MiddleName As String
-    Protected MiddleInitial As String
+    Private Firstname As String
+    Private MiddleName As String
+    Private MiddleInitial As String
 
     ''' <summary> Paternal Last Name </summary>
     Protected LastName1 As String
@@ -26,6 +26,26 @@ Public Class Name
     Public Sub New(Firstname As String, Lastname1 As String, Lastname2 As String)
         Me.New(Firstname, "", Lastname1, Lastname2)
     End Sub
+
+    Public Function getFirst() As String
+        Return Firstname
+    End Function
+
+    Public Function getMiddle() As String
+        Return MiddleName
+    End Function
+
+    Public Function getMiddleInitial() As String
+        Return MiddleInitial
+    End Function
+
+    Public Function getPaternal() As String
+        Return LastName1
+    End Function
+
+    Public Function getMaternal() As String
+        Return LastName2
+    End Function
 
     Public Overrides Function Equals(obj As Object) As Boolean
         Dim othername As Name = TryCast(obj, Name)
