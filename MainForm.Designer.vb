@@ -238,13 +238,14 @@ Partial Class MainForm
         '
         Me.NewPatientToolStripMenuItem.Name = "NewPatientToolStripMenuItem"
         Me.NewPatientToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
-        Me.NewPatientToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
+        Me.NewPatientToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.NewPatientToolStripMenuItem.Text = "New Patient"
         '
         'ExportCompletePatientsToolStripMenuItem
         '
         Me.ExportCompletePatientsToolStripMenuItem.Name = "ExportCompletePatientsToolStripMenuItem"
-        Me.ExportCompletePatientsToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
+        Me.ExportCompletePatientsToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.E), System.Windows.Forms.Keys)
+        Me.ExportCompletePatientsToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.ExportCompletePatientsToolStripMenuItem.Text = "Export Complete Patients"
         Me.ExportCompletePatientsToolStripMenuItem.ToolTipText = "Exports the checked off patients in the Completed Patients section to Patient Bil" &
     "ling Strips"
@@ -252,7 +253,8 @@ Partial Class MainForm
         'DeleteSelectedPatientsToolStripMenuItem
         '
         Me.DeleteSelectedPatientsToolStripMenuItem.Name = "DeleteSelectedPatientsToolStripMenuItem"
-        Me.DeleteSelectedPatientsToolStripMenuItem.Size = New System.Drawing.Size(208, 22)
+        Me.DeleteSelectedPatientsToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete
+        Me.DeleteSelectedPatientsToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.DeleteSelectedPatientsToolStripMenuItem.Text = "Delete Selected Patients"
         Me.DeleteSelectedPatientsToolStripMenuItem.ToolTipText = "Deletes all ticked patients in the Completed Patients tab"
         '
@@ -266,7 +268,8 @@ Partial Class MainForm
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'MainForm

@@ -1,4 +1,6 @@
 ﻿Imports System.IO
+Imports Microsoft.Office.Interop
+Imports Microsoft.Office.Interop.Excel
 
 Public Class MainForm
 
@@ -25,18 +27,27 @@ Public Class MainForm
                 If ReadLine.Count > 1 Then
                     Dim PNAMESplit As String() = ReadLine(0).Split(" ")
                     Dim PNAME As Name
+                    Select Case PNAMESplit.Count
+                        Case 2
+                            'Assume there's only one lastname
+                            PNAME = New Name(PNAMESplit(0), PNAMESplit(1))
+                        Case 3
+                            PNAME = New Name(PNAMESplit(0), PNAMESplit(1), PNAMESplit(2))
+                            'assume there's both last names
+                        Case 4
+                            'assume there's both last names *and* a middle name
+                            PNAME = New Name(PNAMESplit(0) & " " & PNAMESplit(1), PNAMESplit(2), PNAMESplit(3))
+
+                    End Select
+
                     If String.IsNullOrWhiteSpace(PNAMESplit(2)) Then
-                        'Assume there's only one lastname
-                        PNAME = New Name(PNAMESplit(0), PNAMESplit(1))
                     Else
-                        PNAME = New Name(PNAMESplit(0), PNAMESplit(1), PNAMESplit(2))
-                        'assume there's both last names
                     End If
 
                     Dim RecNum As Integer = ReadLine(1)
                     Dim Insur As String = ReadLine(2)
                     Dim Diag As String = ReadLine(3)
-                    Dim Room As Integer = ReadLine(4)
+                    Dim Room As String = ReadLine(4)
                     Dim Complete As Boolean = ReadLine(5)
 
                     Dim AllVisits As String() = ReadLine(6).Split(":")
@@ -131,7 +142,12 @@ Public Class MainForm
             PAsListview.SubItems.Add(TryCast(P.getVisits.Item(P.getVisits.Count - 1), PatientVisit).getDate.ToString("d"))
 
             'Find the floor that this patient is in
-            Dim Floornumber As Integer = P.GetRoomNumber.ToString().Substring(0, 1)
+            Dim Floornumber As Integer
+            Try
+                Floornumber = P.GetRoomNumber.ToString().Substring(0, 1)
+            Catch ex As Exception
+                Floornumber = -1
+            End Try
 
             If P.isComplete Then
                 CompletedPatientListview.Items.Add(PAsListview)
@@ -172,28 +188,20 @@ Public Class MainForm
 
     End Sub
 
-    Private Sub ExportCompletePatientsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportCompletePatientsToolStripMenuItem.Click
-        'We're not quite there yet!
-        MsgBox("We're not quite there yet!", MsgBoxStyle.Information)
-
-        'We need to export them to an excel file, and then we have to format it
-
-        'Also I don't know if we should delete the items automatically or not.
-        'Perhaps we can select items to delete.
-
-    End Sub
-
     Private Sub ActivePatientsListview_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ActivePatientsListview.DoubleClick
-        Dim ExistingPatientDetailsForm As PatientDetailsForm = New PatientDetailsForm With {
+        Try
+            Dim ExistingPatientDetailsForm As PatientDetailsForm = New PatientDetailsForm With {
             .MyPatient = TryCast(AllPatients.Item(GetPatientIndex(ActivePatientsListview.SelectedItems.Item(0).SubItems.Item(1).Text)), Patient)
         }
 
-        Dim PotentialOtherWindow As PatientDetailsForm = RegisterWindow(ExistingPatientDetailsForm)
-        If Not IsNothing(PotentialOtherWindow) Then
-            PotentialOtherWindow.Activate()
-        Else
-            ExistingPatientDetailsForm.Show()
-        End If
+            Dim PotentialOtherWindow As PatientDetailsForm = RegisterWindow(ExistingPatientDetailsForm)
+            If Not IsNothing(PotentialOtherWindow) Then
+                PotentialOtherWindow.Activate()
+            Else
+                ExistingPatientDetailsForm.Show()
+            End If
+        Catch ex As Exception
+        End Try
 
 
     End Sub
@@ -232,5 +240,151 @@ Public Class MainForm
             End If
         Next
     End Sub
+
+    Private Sub ExportCompletePatientsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportCompletePatientsToolStripMenuItem.Click
+        'Now lets make an excel
+        Dim ExcelApp As _Application
+        Dim ExcelBook As _Workbook
+        Dim CurrentWorksheet As _Worksheet
+
+
+
+        ExcelApp = New Application()
+        ExcelApp.Workbooks.Add()
+        ExcelBook = ExcelApp.Workbooks(1)
+        CurrentWorksheet = ExcelBook.Sheets(1)
+
+        ExcelApp.Visible = True
+
+        Dim PatientsToExport As ArrayList = New ArrayList
+
+        For Each Item As ListViewItem In CompletedPatientListview.CheckedItems
+            PatientsToExport.Add(AllPatients.Item(GetPatientIndex(Item.SubItems(1).Text)))
+        Next
+
+        'get us to landscape
+        CurrentWorksheet.PageSetup.Orientation = XlPageOrientation.xlLandscape
+
+        'Set Printarea
+        CurrentWorksheet.PageSetup.PrintArea = "$A$1:$Q$46"
+
+        Dim Row As Integer = 1
+
+        For Each Guy As Patient In PatientsToExport
+            MakeStrip(Guy, Row, CurrentWorksheet)
+            Row += 4
+        Next
+
+
+    End Sub
+
+    Public Sub MakeStrip(Guy As Patient, Row As Integer, Sheet As _Worksheet)
+        Dim Range As Range
+
+        'Name
+        Range = Sheet.Range("A" & Row, "B" & Row)
+        Range.Merge()
+        Range.Value = Guy.getName.ToString
+        Range.Font.Bold = True
+        Range.HorizontalAlignment = HorizontalAlignment.Center
+
+        'Rec#
+        Sheet.Range("A" & (Row + 1)).Value = "REC#: " & Guy.getRecord
+
+        'ROOM
+        Sheet.Range("B" & (Row + 1)).Value = "ROOM: " & Guy.GetRoomNumber
+
+        'Insurance
+        Range = Sheet.Range("A" & (Row + 2), "B" & (Row + 2))
+        Range.Merge()
+        Range.ColumnWidth = 17.14
+        Range.Value = "INS: " & Guy.getInsurance
+
+        'Diagnosis
+        Range = Sheet.Range("A" & (Row + 3), "B" & (Row + 3))
+        Range.Merge()
+        Range.Value = "DIAG: " & Guy.getDiagnosis
+
+        'Border of Card
+        Range = Sheet.Range("A" & Row, "B" & (Row + 3))
+        Range.BorderAround2(XlLineStyle.xlContinuous)
+
+        Dim PrevDate As Date = Nothing
+        Dim NothingDate As Date = Nothing
+        Dim Offset As Integer = 0
+
+        For Each visit As PatientVisit In Guy.getVisits
+            'Check to make sure the days add up
+            If Not PrevDate.Equals(NothingDate) Then
+                Dim Doot As TimeSpan = visit.getDate.Subtract(PrevDate)
+                If Doot.TotalDays > 1 Then
+                    For X = 1 To Doot.TotalDays - 1
+                        MakeEmptyCard(PrevDate.AddDays(X), Offset, Row, Sheet)
+                        Offset += 1
+                    Next
+
+                End If
+
+            End If
+
+            MakeVisitCard(visit, Offset, Row, Sheet)
+            PrevDate = visit.getDate
+            Offset += 1
+
+        Next
+
+    End Sub
+
+    Private Sub MakeVisitCard(Visit As PatientVisit, Offset As Integer, Row As Integer, sheet As _Worksheet)
+        Dim Range As Range
+
+        'Date
+        Range = sheet.Range("C" & Row)
+        Range.Offset(0, Offset).Value = Visit.getDate.Month & "/" & Visit.getDate.Day
+        Range.Offset(0, Offset).HorizontalAlignment = XlHAlign.xlHAlignCenter
+
+        'Ward vs ICU
+        Range = sheet.Range("C" & Row + 1)
+        Range.Offset(0, Offset).Value = Visit.getLocaleAsShortString
+        Range.Offset(0, Offset).Font.Bold = True
+        Range.Offset(0, Offset).HorizontalAlignment = XlHAlign.xlHAlignCenter
+
+        'Consult vs Follow Up
+        Range = sheet.Range("C" & Row + 2)
+        Range.Offset(0, Offset).Value = Visit.getVisitTypeAsShortString
+        Range.Offset(0, Offset).Font.Bold = True
+        Range.Offset(0, Offset).HorizontalAlignment = XlHAlign.xlHAlignCenter
+
+        'Note
+        Range = sheet.Range("C" & Row + 3)
+        Range.Offset(0, Offset).Value = Visit.getNotes
+        Range.Offset(0, Offset).HorizontalAlignment = XlHAlign.xlHAlignCenter
+
+        'Outside Border of Visit
+        Range = sheet.Range("C" & Row, "C" & Row + 3)
+        Range.Offset(0, Offset).BorderAround2(XlLineStyle.xlContinuous)
+
+    End Sub
+
+    Private Sub MakeEmptyCard(D As Date, Offset As Integer, Row As Integer, sheet As _Worksheet)
+        Dim Range As Range
+
+        'Date
+        Range = sheet.Range("C" & Row)
+        Range.Offset(0, Offset).Value = D.Month & "/" & D.Day
+        Range.Offset(0, Offset).HorizontalAlignment = XlHAlign.xlHAlignCenter
+
+        'Ward vs ICU
+        Range = sheet.Range("C" & Row + 1)
+        Range.Offset(0, Offset).Value = "-"
+        Range.Offset(0, Offset).Font.Bold = True
+        Range.Offset(0, Offset).HorizontalAlignment = XlHAlign.xlHAlignCenter
+
+        'Outside Border of Visit
+        Range = sheet.Range("C" & Row + 0, "C" & Row + 3)
+        Range.Offset(0, Offset).BorderAround2(XlLineStyle.xlContinuous)
+
+    End Sub
+
 
 End Class

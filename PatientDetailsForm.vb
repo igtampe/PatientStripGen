@@ -86,6 +86,8 @@
 
     Private Sub AddNewVisitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AddNewVisitToolStripMenuItem.Click
 
+        If NewMode Or CompleteMode Then Return
+
         'Creates a form to create the visit
         Dim NewVisitForm As PatientVisitForm = New PatientVisitForm
         NewVisitForm.ShowDialog()
@@ -105,14 +107,17 @@
 
     Private Sub NowForTheClosingAct() Handles OKBTN.Click
 
-        If CompleteMode Then Close()
+        If CompleteMode Then
+            Close()
+            Return
+        End If
 
         Dim RecordNum As Integer
-        Dim RoomNum As Integer
+        Dim RoomNum As String
 
         Try
             RecordNum = CInt(RecNumberTXB.Text)
-            RoomNum = CInt(RoomNumberTXB.Text)
+            RoomNum = RoomNumberTXB.Text
         Catch ex As Exception
             Debug.WriteLine(ex.Message & vbNewLine & vbNewLine & ex.StackTrace)
             MsgBox("Unable to convert Record Number or Room Number to integer. Perhaps there are non-number characters there?", MsgBoxStyle.OkOnly + MsgBoxStyle.Critical)
@@ -155,5 +160,9 @@
 
     Private Sub theEndCredits() Handles Me.Closing
         MainForm.DeRegisterWindow(MyPatient)
+    End Sub
+
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        Close()
     End Sub
 End Class

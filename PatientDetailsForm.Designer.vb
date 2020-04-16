@@ -28,6 +28,7 @@ Partial Class PatientDetailsForm
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AddNewVisitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MarkAsCompleteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PatientLayout = New System.Windows.Forms.TableLayoutPanel()
@@ -78,7 +79,7 @@ Partial Class PatientDetailsForm
         '
         'FileToolStripMenuItem
         '
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewVisitToolStripMenuItem, Me.MarkAsCompleteToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddNewVisitToolStripMenuItem, Me.MarkAsCompleteToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
         Me.FileToolStripMenuItem.Text = "File"
@@ -86,14 +87,24 @@ Partial Class PatientDetailsForm
         'AddNewVisitToolStripMenuItem
         '
         Me.AddNewVisitToolStripMenuItem.Name = "AddNewVisitToolStripMenuItem"
-        Me.AddNewVisitToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.AddNewVisitToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.N), System.Windows.Forms.Keys)
+        Me.AddNewVisitToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
         Me.AddNewVisitToolStripMenuItem.Text = "Add New Visit"
         '
         'MarkAsCompleteToolStripMenuItem
         '
         Me.MarkAsCompleteToolStripMenuItem.Name = "MarkAsCompleteToolStripMenuItem"
-        Me.MarkAsCompleteToolStripMenuItem.Size = New System.Drawing.Size(170, 22)
+        Me.MarkAsCompleteToolStripMenuItem.ShortcutKeys = CType(((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.Shift) _
+            Or System.Windows.Forms.Keys.M), System.Windows.Forms.Keys)
+        Me.MarkAsCompleteToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
         Me.MarkAsCompleteToolStripMenuItem.Text = "Mark as Complete"
+        '
+        'ExitToolStripMenuItem
+        '
+        Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
+        Me.ExitToolStripMenuItem.ShortcutKeys = CType((System.Windows.Forms.Keys.Control Or System.Windows.Forms.Keys.W), System.Windows.Forms.Keys)
+        Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(247, 22)
+        Me.ExitToolStripMenuItem.Text = "Exit"
         '
         'HelpToolStripMenuItem
         '
@@ -105,7 +116,8 @@ Partial Class PatientDetailsForm
         'AboutToolStripMenuItem
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(107, 22)
+        Me.AboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'PatientLayout
@@ -208,7 +220,7 @@ Partial Class PatientDetailsForm
         Me.TableLayoutPanel2.ColumnCount = 3
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.54321!))
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.45679!))
-        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 356.0!))
+        Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 357.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.Label5, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label6, 1, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Label7, 2, 0)
@@ -247,7 +259,7 @@ Partial Class PatientDetailsForm
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(298, 0)
+        Me.Label7.Location = New System.Drawing.Point(297, 0)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(54, 13)
         Me.Label7.TabIndex = 9
@@ -266,15 +278,15 @@ Partial Class PatientDetailsForm
         Me.RoomNumberTXB.Dock = System.Windows.Forms.DockStyle.Fill
         Me.RoomNumberTXB.Location = New System.Drawing.Point(155, 20)
         Me.RoomNumberTXB.Name = "RoomNumberTXB"
-        Me.RoomNumberTXB.Size = New System.Drawing.Size(137, 20)
+        Me.RoomNumberTXB.Size = New System.Drawing.Size(136, 20)
         Me.RoomNumberTXB.TabIndex = 11
         '
         'InsuranceTXB
         '
         Me.InsuranceTXB.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.InsuranceTXB.Location = New System.Drawing.Point(298, 20)
+        Me.InsuranceTXB.Location = New System.Drawing.Point(297, 20)
         Me.InsuranceTXB.Name = "InsuranceTXB"
-        Me.InsuranceTXB.Size = New System.Drawing.Size(351, 20)
+        Me.InsuranceTXB.Size = New System.Drawing.Size(352, 20)
         Me.InsuranceTXB.TabIndex = 12
         '
         'TableLayoutPanel3
@@ -471,4 +483,5 @@ Partial Class PatientDetailsForm
     Friend WithEvents ButtonLayout As TableLayoutPanel
     Friend WithEvents OKBTN As Button
     Friend WithEvents CANCELBTN As Button
+    Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
 End Class

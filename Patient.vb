@@ -4,7 +4,7 @@
     Private PatientRecord As Integer
     Private PatientInsurance As String
     Private Diagnosis As String
-    Private RoomNumber As Integer
+    Private RoomNumber As String
     Private Complete As Boolean
 
     Private AllVisits As ArrayList
@@ -17,7 +17,7 @@
         PatientRecord = Record
     End Sub
 
-    Public Sub New(PName As Name, PRecord As Integer, PInsurance As String, PDiagnosis As String, PRoomNumber As Integer, FirstVisit As PatientVisit)
+    Public Sub New(PName As Name, PRecord As Integer, PInsurance As String, PDiagnosis As String, PRoomNumber As String, FirstVisit As PatientVisit)
         PatientName = PName
         PatientRecord = PRecord
         PatientInsurance = PInsurance
@@ -47,11 +47,11 @@
         Diagnosis = NewDiagnosis
     End Sub
 
-    Public Function GetRoomNumber() As Integer
+    Public Function GetRoomNumber() As String
         Return RoomNumber
     End Function
 
-    Public Sub SetRoomNumber(RNumber As Integer)
+    Public Sub SetRoomNumber(RNumber As String)
         RoomNumber = RNumber
     End Sub
 
