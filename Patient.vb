@@ -67,6 +67,7 @@
         PatientInsurance = NewInsurance
     End Sub
 
+    ''' <summary>Marks patient as complete</summary>
     Public Sub MarkComplete()
         Complete = True
     End Sub
@@ -75,6 +76,11 @@
         Return Complete
     End Function
 
+    ''' <summary>
+    ''' To Equals, which only looks at patient's record number
+    ''' </summary>
+    ''' <param name="obj">Another object to compare, preferably another patient</param>
+    ''' <returns>True if and only if the other object is a patient, and if their record matches this patient's</returns>
     Public Overrides Function Equals(obj As Object) As Boolean
         Dim OtherPatient As Patient = TryCast(obj, Patient)
         If IsNothing(OtherPatient) Then Return False
@@ -83,6 +89,10 @@
         Return PatientRecord = OtherPatient.PatientRecord
     End Function
 
+    ''' <summary>
+    ''' To String designed for Saving
+    ''' </summary>
+    ''' <returns>FNAME LNAME LNAME~RECNUM~INSUR~DIAG~ROOM~COMPLETE~(Array of all visits split with :)</returns>
     Public Overrides Function ToString() As String
         'FNAME LNAME LNAME~RECNUM~INSUR~DIAG~ROOM~COMPLETE~DATE`LOCALE`TYPE`NOTES:DATE`LOCALE`TYPE`NOTES:DATE`LOCALE`TYPE`NOTES
         'Juan Del Pueblo~1101~MCSLife~Death~201~0~5/10/2020`1`1`Not dead:5/15/2020`1`1`Dead

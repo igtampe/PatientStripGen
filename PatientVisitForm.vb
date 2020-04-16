@@ -2,7 +2,9 @@
 
     Public ReturnVisit As PatientVisit
 
-    Private Sub OKBTN_Click(sender As Object, e As EventArgs) Handles OKBTN.Click
+    Private Sub CommittalClose() Handles OKBTN.Click
+
+        'Some basic validation
         If Not (VLocale.SelectedIndex = 0 Or VLocale.SelectedIndex = 1) Then
             MsgBox("Please select a visit location", MsgBoxStyle.OkOnly + MsgBoxStyle.Exclamation)
             Return
@@ -13,11 +15,12 @@
             Return
         End If
 
+        'Create the return visit
         ReturnVisit = New PatientVisit(DatePicker.Value, VLocale.SelectedIndex, VType.SelectedIndex, NotesTXB.Text)
         Close()
     End Sub
 
-    Private Sub CANCELBTN_Click(sender As Object, e As EventArgs) Handles CANCELBTN.Click
+    Private Sub NonCommittalClose() Handles CANCELBTN.Click
         Close()
     End Sub
 End Class

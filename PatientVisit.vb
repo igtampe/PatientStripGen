@@ -33,6 +33,10 @@
         Return Locale
     End Function
 
+    ''' <summary>
+    ''' Gets the locale as a string
+    ''' </summary>
+    ''' <returns>WARD or ICU (Or ? just in case the locale isn't set)</returns>
     Public Function getLocaleAsString() As String
         Select Case Locale
             Case VisitLocale.Ward
@@ -44,6 +48,10 @@
         End Select
     End Function
 
+    ''' <summary>
+    ''' Gets locale as Short String
+    ''' </summary>
+    ''' <returns>W or ICU (or ? just in case the locale isn't set)</returns>
     Public Function getLocaleAsShortString() As String
         Select Case Locale
             Case VisitLocale.Ward
@@ -55,11 +63,14 @@
         End Select
     End Function
 
-
     Public Function getVisitType() As VisitType
         Return Type
     End Function
 
+    ''' <summary>
+    ''' Gets visit type as string
+    ''' </summary>
+    ''' <returns>CONSULT or FOLLOW-UP (or ? in case type isn't set)</returns>
     Public Function getVisitTypeAsString() As String
         Select Case Type
             Case VisitType.Consult
@@ -71,6 +82,10 @@
         End Select
     End Function
 
+    ''' <summary>
+    ''' Gets visit type as short string
+    ''' </summary>
+    ''' <returns>C or F (or ? in case type isn't set)</returns>
     Public Function getVisitTypeAsShortString() As String
         Return getVisitTypeAsString(0)
     End Function
@@ -79,6 +94,10 @@
         Return Notes
     End Function
 
+    ''' <summary>
+    ''' Returns a string representing this visit for saving
+    ''' </summary>
+    ''' <returns>MM/DD/YYYY`LOCALE(as int)`TYPE(as int)`Notes</returns>
     Public Overrides Function ToString() As String
         '5/15/2020`1`1`Dead
         Dim Loc As Integer = Locale
