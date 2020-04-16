@@ -2,6 +2,7 @@
 
     ''' <summary>Set the stuff</summary>
     Private Sub FillMeUp() Handles MyBase.Load
+        Icon = My.Resources.JustPSG
         Text = "About PSG"
         LabelProductName.Text = "Patient Billing Strip Generator"
         LabelVersion.Text = String.Format("Version {0}", My.Application.Info.Version.ToString)

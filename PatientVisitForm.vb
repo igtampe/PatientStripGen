@@ -2,6 +2,10 @@
 
     Public ReturnVisit As PatientVisit
 
+    Private Sub SetIcon() Handles Me.Load
+        Icon = My.Resources.JustPSG
+    End Sub
+
     Private Sub CommittalClose() Handles OKBTN.Click
 
         'Some basic validation

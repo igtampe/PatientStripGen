@@ -16,6 +16,9 @@
     Private Sub TimeToStartTheShow() Handles MyBase.Load
         'o l i
 
+        'Set icon
+        Icon = My.Resources.JustPSG
+
         'Clear a few things
         AdminDateLBL.Text = ""
         VisitsListView.Items.Clear()

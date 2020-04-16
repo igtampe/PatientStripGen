@@ -15,6 +15,9 @@ Public Class MainForm
 
     Private Sub StartTheShow() Handles MyBase.Shown
 
+        'Set Icon
+        Icon = My.Resources.JustPSG
+
         'Clear the lists
         ActivePatientsListview.Items.Clear()
         CompletedPatientListview.Items.Clear()
@@ -48,6 +51,8 @@ Public Class MainForm
                             'assume there's both last names *and* a middle name innitial which I'm not going to store as the actual middle innitial in the name class because
                             'I'd need to account for that litterally everywhere else. Dad said no middle names but then there are middle innitials in his old strips so yeah.
                             PNAME = New Name(PNAMESplit(0) & " " & PNAMESplit(1), PNAMESplit(2), PNAMESplit(3))
+                        Case Else
+                            PNAME = New Name("?", "?")
                     End Select
 
                     'Get the other parts

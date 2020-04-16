@@ -31,7 +31,6 @@ Partial Class MainForm
         Dim ListViewGroup7 As System.Windows.Forms.ListViewGroup = New System.Windows.Forms.ListViewGroup("7th Floor", System.Windows.Forms.HorizontalAlignment.Left)
         Dim ListViewItem1 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Juan Del Pueblo", "11020", "602", "5/15/2020", "5/20/2020"}, -1)
         Dim ListViewItem2 As System.Windows.Forms.ListViewItem = New System.Windows.Forms.ListViewItem(New String() {"Juan Del Pueblo", "11020", "602", "5/15/2020", "5/20/2020"}, -1)
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.ActiveTableLayout = New System.Windows.Forms.TableLayoutPanel()
@@ -103,6 +102,7 @@ Partial Class MainForm
         '
         Me.ActivePatientsListview.Columns.AddRange(New System.Windows.Forms.ColumnHeader() {Me.LName, Me.Record, Me.Room, Me.DateAdmin, Me.DateLastVisit})
         Me.ActivePatientsListview.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ActivePatientsListview.ForeColor = System.Drawing.SystemColors.WindowText
         Me.ActivePatientsListview.FullRowSelect = True
         ListViewGroup1.Header = "1st Floor"
         ListViewGroup1.Name = "F1"
@@ -269,7 +269,7 @@ Partial Class MainForm
         '
         Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
         Me.AboutToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F1
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(180, 22)
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(126, 22)
         Me.AboutToolStripMenuItem.Text = "About"
         '
         'MainForm
@@ -279,7 +279,6 @@ Partial Class MainForm
         Me.ClientSize = New System.Drawing.Size(579, 648)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.MenuStrip1)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "MainForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

@@ -12,7 +12,7 @@ Imports System.Runtime.InteropServices
 <Assembly: AssemblyDescription("PatientStrip Generator")>
 <Assembly: AssemblyCompany("Igtampe")>
 <Assembly: AssemblyProduct("PSG")>
-<Assembly: AssemblyCopyright("Copyright ©2020 IGT, No rights Reserved")>
+<Assembly: AssemblyCopyright("©2020 Igtampe, No rights Reserved")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>
