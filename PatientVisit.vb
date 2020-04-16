@@ -1,5 +1,7 @@
 ﻿Public Class PatientVisit
 
+    '------------------[Variables]------------------
+
     Private DateOfVisit As Date
     Private Locale As VisitLocale
     Private Type As VisitType
@@ -15,6 +17,8 @@
         FollowUp = 1
     End Enum
 
+    '------------------[Constructor]------------------
+
     Public Sub New(DOV As Date, Locale As VisitLocale, Type As VisitType, Notes As String)
         Me.DateOfVisit = DOV
         Me.Locale = Locale
@@ -24,6 +28,8 @@
 
     'I'm like 90% sure this should be set in stone, and shouldn't be editable
     'At least, for accountability reasons
+
+    '------------------[Getters]------------------
 
     Public Function getDate() As Date
         Return DateOfVisit
@@ -93,6 +99,8 @@
     Public Function getNotes() As String
         Return Notes
     End Function
+
+    '------------------[Object Overrides]------------------
 
     ''' <summary>
     ''' Returns a string representing this visit for saving

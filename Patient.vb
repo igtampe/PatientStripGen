@@ -1,5 +1,7 @@
 ﻿Public Class Patient
 
+    '------------------[Variables]------------------
+
     Private PatientName As Name
     Private PatientRecord As Integer
     Private PatientInsurance As String
@@ -9,9 +11,9 @@
 
     Private AllVisits As ArrayList
 
-    ''' <summary>
-    ''' This is purely to lookup other records.
-    ''' </summary>
+    '------------------[Constructors]------------------
+
+    ''' <summary> This is purely to lookup other records.</summary>
     ''' <param name="Record"></param>
     Public Sub New(Record As Integer)
         PatientRecord = Record
@@ -26,6 +28,8 @@
         AllVisits = New ArrayList From {FirstVisit}
         Complete = False
     End Sub
+
+    '------------------[Getters and Setters]------------------
 
     Public Function getName() As Name
         Return PatientName
@@ -75,6 +79,8 @@
     Public Function isComplete() As Boolean
         Return Complete
     End Function
+
+    '------------------[Object Overrides]------------------
 
     ''' <summary>
     ''' To Equals, which only looks at patient's record number

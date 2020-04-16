@@ -1,6 +1,8 @@
 ﻿''' <summary>Holds names so that their components are re-organizable </summary>
 Public Class Name
 
+    '------------------[Variables]------------------
+
     Private Firstname As String
     Private MiddleName As String
     Private MiddleInitial As String
@@ -10,6 +12,8 @@ Public Class Name
 
     ''' <summary> Maternal Last Name </summary>
     Protected LastName2 As String
+
+    '------------------[Constructors]------------------
 
     ''' <summary> Main Constructor </summary>
     ''' <param name="Firstname"></param>
@@ -43,6 +47,8 @@ Public Class Name
         Me.New(Firstname, "", Lastname1, Lastname2)
     End Sub
 
+    '------------------[Getters]------------------
+
     ''' <summary>Gets first name </summary>
     Public Function getFirst() As String
         Return Firstname
@@ -67,6 +73,8 @@ Public Class Name
     Public Function getMaternal() As String
         Return LastName2
     End Function
+
+    '------------------[Object Overrides]------------------
 
     ''' <summary> Equals function </summary>
     ''' <param name="obj">Something to compare (Hopefully something that's a name)</param>
