@@ -34,7 +34,7 @@
             PLastNameTXB.ReadOnly = True
             MLastNameTXB.ReadOnly = True
             RecNumberTXB.ReadOnly = True
-            Text = MyPatient.getName.ToString & " (" & MyPatient.getRecord & ")"
+            Text = MyPatient.GetName.ToString & " (" & MyPatient.GetRecord & ")"
 
             'Assume we have a patient specified. Let's go ahead and populate the form.
             PopulateForm()
@@ -55,14 +55,14 @@
 
     ''' <summary> Populates the form </summary>
     Private Sub PopulateForm()
-        FirstNameTXB.Text = MyPatient.getName.getFirst
-        PLastNameTXB.Text = MyPatient.getName.getPaternal
-        MLastNameTXB.Text = MyPatient.getName.getMaternal
-        RecNumberTXB.Text = MyPatient.getRecord
+        FirstNameTXB.Text = MyPatient.GetName.GetFirst
+        PLastNameTXB.Text = MyPatient.GetName.GetPaternal
+        MLastNameTXB.Text = MyPatient.GetName.GetMaternal
+        RecNumberTXB.Text = MyPatient.GetRecord
         RoomNumberTXB.Text = MyPatient.GetRoomNumber
-        InsuranceTXB.Text = MyPatient.getInsurance
-        DiagnosisTXB.Text = MyPatient.getDiagnosis
-        AdminDateLBL.Text = TryCast(MyPatient.getVisits.Item(0), PatientVisit).getDate.ToString("D")
+        InsuranceTXB.Text = MyPatient.GetInsurance
+        DiagnosisTXB.Text = MyPatient.GetDiagnosis
+        AdminDateLBL.Text = TryCast(MyPatient.GetVisits.Item(0), PatientVisit).GetDate.ToString("D")
 
         PopulateListView()
     End Sub
@@ -74,13 +74,13 @@
         VisitsListView.Items.Clear()
 
         'Add each visit to the list view
-        For Each Visit As PatientVisit In MyPatient.getVisits
+        For Each Visit As PatientVisit In MyPatient.GetVisits
 
             'Create the list view item with the current Visit's information
-            Dim VisitAsListview As ListViewItem = New ListViewItem With {.Text = Visit.getDate.ToString("d")}
-            VisitAsListview.SubItems.Add(Visit.getLocaleAsString)
-            VisitAsListview.SubItems.Add(Visit.getVisitTypeAsString)
-            VisitAsListview.SubItems.Add(Visit.getNotes)
+            Dim VisitAsListview As ListViewItem = New ListViewItem With {.Text = Visit.GetDate.ToString("d")}
+            VisitAsListview.SubItems.Add(Visit.GetLocaleAsString)
+            VisitAsListview.SubItems.Add(Visit.GetVisitTypeAsString)
+            VisitAsListview.SubItems.Add(Visit.GetNotes)
 
             'a d d     i t
             VisitsListView.Items.Add(VisitAsListview)
@@ -130,7 +130,7 @@
         End If
 
         'Check if the form is valid
-        If Not isValid() Then
+        If Not IsValid() Then
             Return
         End If
 
@@ -166,13 +166,13 @@
 
     '------------------[Other Operations]------------------
 
-    Private Sub theEndCredits() Handles Me.Closing
+    Private Sub TheEndCredits() Handles Me.Closing
         MainForm.DeRegisterWindow(MyPatient)
     End Sub
 
     ''' <summary>Checks if the form is validly filled</summary>
     ''' <returns>true if yes, false if no</returns>
-    Private Function isValid() As Boolean
+    Private Function IsValid() As Boolean
 
         If String.IsNullOrWhiteSpace(FirstNameTXB.Text) Then
             MsgBox("I need a first name!", vbExclamation)

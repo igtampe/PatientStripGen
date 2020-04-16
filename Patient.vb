@@ -2,14 +2,14 @@
 
     '------------------[Variables]------------------
 
-    Private PatientName As Name
-    Private PatientRecord As Integer
+    Private ReadOnly PatientName As Name
+    Private ReadOnly PatientRecord As Integer
     Private PatientInsurance As String
     Private Diagnosis As String
     Private RoomNumber As String
     Private Complete As Boolean
 
-    Private AllVisits As ArrayList
+    Private ReadOnly AllVisits As ArrayList
 
     '------------------[Constructors]------------------
 
@@ -31,19 +31,19 @@
 
     '------------------[Getters and Setters]------------------
 
-    Public Function getName() As Name
+    Public Function GetName() As Name
         Return PatientName
     End Function
 
-    Public Function getRecord() As Integer
+    Public Function GetRecord() As Integer
         Return PatientRecord
     End Function
 
-    Public Function getInsurance() As String
+    Public Function GetInsurance() As String
         Return PatientInsurance
     End Function
 
-    Public Function getDiagnosis() As String
+    Public Function GetDiagnosis() As String
         Return Diagnosis
     End Function
 
@@ -59,7 +59,7 @@
         RoomNumber = RNumber
     End Sub
 
-    Public Function getVisits() As ArrayList
+    Public Function GetVisits() As ArrayList
         Return AllVisits
     End Function
 
@@ -76,7 +76,7 @@
         Complete = True
     End Sub
 
-    Public Function isComplete() As Boolean
+    Public Function IsComplete() As Boolean
         Return Complete
     End Function
 

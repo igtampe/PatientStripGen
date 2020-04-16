@@ -93,7 +93,7 @@ Public Class MainForm
 
             'Close the file and populate both listviews
             FileClose(1)
-            populateListViews()
+            PopulateListViews()
 
         Else
             'No file exists. Give a tiny welcome message!
@@ -106,14 +106,14 @@ Public Class MainForm
     ''' <returns>True if it was added, false if it was not possible</returns>
     Public Function AddPatient(NuPatient As Patient)
         'Check if we contain it
-        If AllPatients.Contains(New Patient(NuPatient.getRecord)) Then
+        If AllPatients.Contains(New Patient(NuPatient.GetRecord)) Then
             MsgBox("Cannot add this patient! A patient with the same record number already exists!", MsgBoxStyle.Critical)
             Return False
         End If
 
         'add it, repopulate the listviews, and lets get the heck out of here.
         AllPatients.Add(NuPatient)
-        populateListViews()
+        PopulateListViews()
         Return True
     End Function
 
@@ -122,13 +122,13 @@ Public Class MainForm
     Public Function UpdatePatient(NuPatient As Patient)
         Try
             'Try to add it
-            AllPatients.Item(GetPatientIndex(NuPatient.getRecord)) = NuPatient
-            populateListViews()
+            AllPatients.Item(GetPatientIndex(NuPatient.GetRecord)) = NuPatient
+            PopulateListViews()
             Return True
-        Catch
+        Catch ex As Exception
             'J u s t     i n      c a s e
             'The only thing I could see happening is that the NuPatient's record might not be in the array, which *should* not happen, but we will do esto just in case.
-            MsgBox("Could not update " & NuPatient.getName.ToString, vbCritical)
+            MsgBox("Could not update " & NuPatient.GetName.ToString, vbCritical)
             Return False
         End Try
     End Function
@@ -142,7 +142,7 @@ Public Class MainForm
     End Function
 
     ''' <summary>Populate all the listviews</summary>
-    Private Sub populateListViews()
+    Private Sub PopulateListViews()
 
         'Clear the lists
         ActivePatientsListview.Items.Clear()
@@ -157,11 +157,11 @@ Public Class MainForm
             PrintLine(1, P.ToString)
 
             'Create the listview item with the information of the patient
-            Dim PAsListview = New ListViewItem(P.getName.ToString)
-            PAsListview.SubItems.Add(P.getRecord)
+            Dim PAsListview = New ListViewItem(P.GetName.ToString)
+            PAsListview.SubItems.Add(P.GetRecord)
             PAsListview.SubItems.Add(P.GetRoomNumber)
-            PAsListview.SubItems.Add(TryCast(P.getVisits.Item(0), PatientVisit).getDate.ToString("d"))
-            PAsListview.SubItems.Add(TryCast(P.getVisits.Item(P.getVisits.Count - 1), PatientVisit).getDate.ToString("d"))
+            PAsListview.SubItems.Add(TryCast(P.GetVisits.Item(0), PatientVisit).GetDate.ToString("d"))
+            PAsListview.SubItems.Add(TryCast(P.GetVisits.Item(P.GetVisits.Count - 1), PatientVisit).GetDate.ToString("d"))
 
             'Find the floor that this patient is in. In case the room doesn't start with a number, we have this try catch.
             Dim Floornumber As Integer
@@ -172,7 +172,7 @@ Public Class MainForm
             End Try
 
             'Add it to the appropriate listview
-            If P.isComplete Then
+            If P.IsComplete Then
                 CompletedPatientListview.Items.Add(PAsListview)
             Else
                 Try
@@ -215,7 +215,7 @@ Public Class MainForm
             Next
 
             'Repopulate
-            populateListViews()
+            PopulateListViews()
         End If
 
     End Sub
@@ -330,12 +330,12 @@ Public Class MainForm
         'Name
         Range = Sheet.Range("A" & Row, "B" & Row)
         Range.Merge()
-        Range.Value = Guy.getName.ToString
+        Range.Value = Guy.GetName.ToString
         Range.Font.Bold = True
         Range.HorizontalAlignment = HorizontalAlignment.Center
 
         'Rec#
-        Sheet.Range("A" & (Row + 1)).Value = "REC#: " & Guy.getRecord
+        Sheet.Range("A" & (Row + 1)).Value = "REC#: " & Guy.GetRecord
 
         'ROOM
         Sheet.Range("B" & (Row + 1)).Value = "ROOM: " & Guy.GetRoomNumber
@@ -344,12 +344,12 @@ Public Class MainForm
         Range = Sheet.Range("A" & (Row + 2), "B" & (Row + 2))
         Range.Merge()
         Range.ColumnWidth = 17.14
-        Range.Value = "INS: " & Guy.getInsurance
+        Range.Value = "INS: " & Guy.GetInsurance
 
         'Diagnosis
         Range = Sheet.Range("A" & (Row + 3), "B" & (Row + 3))
         Range.Merge()
-        Range.Value = "DIAG: " & Guy.getDiagnosis
+        Range.Value = "DIAG: " & Guy.GetDiagnosis
 
         'Border of Card
         Range = Sheet.Range("A" & Row, "B" & (Row + 3))
@@ -364,11 +364,11 @@ Public Class MainForm
         'VB.NET is weird.
 
         'Add each visit
-        For Each visit As PatientVisit In Guy.getVisits
+        For Each visit As PatientVisit In Guy.GetVisits
             'Check to make sure all days are accounted for (even ones without a visit that passed between visits)
             If Not PrevDate.Equals(NothingDate) Then
                 'Get the time between the last visit and this visit
-                Dim Doot As TimeSpan = visit.getDate.Subtract(PrevDate)
+                Dim Doot As TimeSpan = visit.GetDate.Subtract(PrevDate)
                 If Doot.TotalDays > 1 Then
                     'If there's more tha none, add the days without a visit.
                     For X = 1 To Doot.TotalDays - 1
@@ -382,7 +382,7 @@ Public Class MainForm
             MakeVisitCard(visit, Offset, Row, Sheet)
 
             'Update our previous date
-            PrevDate = visit.getDate
+            PrevDate = visit.GetDate
 
             'Update our column offset.
             Offset += 1
@@ -401,24 +401,24 @@ Public Class MainForm
 
         'Date
         Range = sheet.Range("C" & Row)
-        Range.Offset(0, Offset).Value = Visit.getDate.Month & "/" & Visit.getDate.Day
+        Range.Offset(0, Offset).Value = Visit.GetDate.Month & "/" & Visit.GetDate.Day
         Range.Offset(0, Offset).HorizontalAlignment = XlHAlign.xlHAlignCenter
 
         'Ward vs ICU
         Range = sheet.Range("C" & Row + 1)
-        Range.Offset(0, Offset).Value = Visit.getLocaleAsShortString
+        Range.Offset(0, Offset).Value = Visit.GetLocaleAsShortString
         Range.Offset(0, Offset).Font.Bold = True
         Range.Offset(0, Offset).HorizontalAlignment = XlHAlign.xlHAlignCenter
 
         'Consult vs Follow Up
         Range = sheet.Range("C" & Row + 2)
-        Range.Offset(0, Offset).Value = Visit.getVisitTypeAsShortString
+        Range.Offset(0, Offset).Value = Visit.GetVisitTypeAsShortString
         Range.Offset(0, Offset).Font.Bold = True
         Range.Offset(0, Offset).HorizontalAlignment = XlHAlign.xlHAlignCenter
 
         'Note
         Range = sheet.Range("C" & Row + 3)
-        Range.Offset(0, Offset).Value = Visit.getNotes
+        Range.Offset(0, Offset).Value = Visit.GetNotes
         Range.Offset(0, Offset).HorizontalAlignment = XlHAlign.xlHAlignCenter
 
         'Outside Border of Visit

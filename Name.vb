@@ -3,9 +3,9 @@ Public Class Name
 
     '------------------[Variables]------------------
 
-    Private Firstname As String
-    Private MiddleName As String
-    Private MiddleInitial As String
+    Private ReadOnly Firstname As String
+    Private ReadOnly MiddleName As String
+    Private ReadOnly MiddleInitial As String
 
     ''' <summary> Paternal Last Name </summary>
     Protected LastName1 As String
@@ -50,27 +50,27 @@ Public Class Name
     '------------------[Getters]------------------
 
     ''' <summary>Gets first name </summary>
-    Public Function getFirst() As String
+    Public Function GetFirst() As String
         Return Firstname
     End Function
 
     ''' <summary>Gets middle name </summary>
-    Public Function getMiddle() As String
+    Public Function GetMiddle() As String
         Return MiddleName
     End Function
 
     ''' <summary>Gets middle innitial</summary>
-    Public Function getMiddleInitial() As String
+    Public Function GetMiddleInitial() As String
         Return MiddleInitial
     End Function
 
     ''' <summary>Gets Paternal (first) last name</summary>
-    Public Function getPaternal() As String
+    Public Function GetPaternal() As String
         Return LastName1
     End Function
 
     ''' <summary>Gets Maternal (Second) last name</summary>
-    Public Function getMaternal() As String
+    Public Function GetMaternal() As String
         Return LastName2
     End Function
 

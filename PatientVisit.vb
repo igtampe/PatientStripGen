@@ -2,10 +2,10 @@
 
     '------------------[Variables]------------------
 
-    Private DateOfVisit As Date
-    Private Locale As VisitLocale
-    Private Type As VisitType
-    Private Notes As String
+    Private ReadOnly DateOfVisit As Date
+    Private ReadOnly Locale As VisitLocale
+    Private ReadOnly Type As VisitType
+    Private ReadOnly Notes As String
 
     Public Enum VisitLocale As Integer
         Ward = 0
@@ -31,11 +31,11 @@
 
     '------------------[Getters]------------------
 
-    Public Function getDate() As Date
+    Public Function GetDate() As Date
         Return DateOfVisit
     End Function
 
-    Public Function getLocale() As VisitLocale
+    Public Function GetLocale() As VisitLocale
         Return Locale
     End Function
 
@@ -43,7 +43,7 @@
     ''' Gets the locale as a string
     ''' </summary>
     ''' <returns>WARD or ICU (Or ? just in case the locale isn't set)</returns>
-    Public Function getLocaleAsString() As String
+    Public Function GetLocaleAsString() As String
         Select Case Locale
             Case VisitLocale.Ward
                 Return "WARD"
@@ -58,7 +58,7 @@
     ''' Gets locale as Short String
     ''' </summary>
     ''' <returns>W or ICU (or ? just in case the locale isn't set)</returns>
-    Public Function getLocaleAsShortString() As String
+    Public Function GetLocaleAsShortString() As String
         Select Case Locale
             Case VisitLocale.Ward
                 Return "W"
@@ -69,7 +69,7 @@
         End Select
     End Function
 
-    Public Function getVisitType() As VisitType
+    Public Function GetVisitType() As VisitType
         Return Type
     End Function
 
@@ -77,7 +77,7 @@
     ''' Gets visit type as string
     ''' </summary>
     ''' <returns>CONSULT or FOLLOW-UP (or ? in case type isn't set)</returns>
-    Public Function getVisitTypeAsString() As String
+    Public Function GetVisitTypeAsString() As String
         Select Case Type
             Case VisitType.Consult
                 Return "CONSULT"
@@ -92,11 +92,11 @@
     ''' Gets visit type as short string
     ''' </summary>
     ''' <returns>C or F (or ? in case type isn't set)</returns>
-    Public Function getVisitTypeAsShortString() As String
-        Return getVisitTypeAsString(0)
+    Public Function GetVisitTypeAsShortString() As String
+        Return GetVisitTypeAsString(0)
     End Function
 
-    Public Function getNotes() As String
+    Public Function GetNotes() As String
         Return Notes
     End Function
 
