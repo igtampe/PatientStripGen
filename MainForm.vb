@@ -15,6 +15,10 @@ Public Class MainForm
 
     Private Sub StartTheShow() Handles MyBase.Shown
 
+        'Clear the lists
+        ActivePatientsListview.Items.Clear()
+        CompletedPatientListview.Items.Clear()
+
         'Create the arraylists
         AllPatients = New ArrayList
         AllWindows = New ArrayList

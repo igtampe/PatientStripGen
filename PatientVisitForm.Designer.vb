@@ -164,7 +164,7 @@ Partial Class PatientVisitForm
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow
         Me.Name = "PatientVisitForm"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "PatientVisitForm"
+        Me.Text = "New Visit"
         Me.VisitLayout.ResumeLayout(False)
         Me.VisitLayout.PerformLayout()
         Me.ResumeLayout(False)
